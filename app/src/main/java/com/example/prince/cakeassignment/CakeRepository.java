@@ -1,6 +1,5 @@
 package com.example.prince.cakeassignment;
 
-import android.app.Application;
 import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.MutableLiveData;
 
@@ -20,7 +19,6 @@ public class CakeRepository {
         System.out.println("well oh boy");
         cakeAPI = new Retrofit.Builder()
                 .baseUrl(CakeInterface.BASE_URL)
-                //.addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .addConverterFactory(GsonConverterFactory.create())
                 .build().create(CakeInterface.class);
     }
