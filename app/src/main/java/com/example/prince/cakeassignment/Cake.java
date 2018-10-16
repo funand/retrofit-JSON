@@ -1,18 +1,9 @@
 package com.example.prince.cakeassignment;
 
-import com.google.gson.annotations.Expose;
-import com.google.gson.annotations.SerializedName;
-
 public class Cake {
 
-    @SerializedName("title")
-    @Expose
     private String title;
-    @SerializedName("desc")
-    @Expose
     private String desc;
-    @SerializedName("image")
-    @Expose
     private String image;
 
     public Cake(String title, String desc, String image) {
