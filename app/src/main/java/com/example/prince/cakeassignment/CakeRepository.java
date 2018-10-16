@@ -16,7 +16,6 @@ public class CakeRepository {
     private CakeInterface cakeAPI;
 
     public CakeRepository(){
-        System.out.println("well oh boy");
         cakeAPI = new Retrofit.Builder()
                 .baseUrl(CakeInterface.BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
@@ -36,22 +35,18 @@ public class CakeRepository {
 
     public LiveData<List<Cake>> getCakes() {
         final MutableLiveData<List<Cake>> data = new MutableLiveData<>();
-        System.out.println("omggggggggggggggggggggggggg");
         cakeAPI.getCakes()
                 .enqueue(new Callback<List<Cake>>()
                 {
                     @Override
                     public void onResponse(Call<List<Cake>> call, Response<List<Cake>> response)
                     {
-
-                        System.out.println("seriously");
                         data.setValue(response.body());
 
                     }
 
                     @Override
                     public void onFailure(Call<List<Cake>> call, Throwable t) {
-                        System.out.println("well fuck again");
                         data.setValue(null);
                     }
                 });
@@ -60,7 +55,6 @@ public class CakeRepository {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        System.out.println("sooooooooooooo well fuck again");
         return data;
     }
 }

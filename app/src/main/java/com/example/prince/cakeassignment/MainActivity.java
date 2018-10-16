@@ -11,7 +11,7 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
 
     RecyclerView rv;
-     CakeViewModel cakeViewModel;
+    CakeViewModel cakeViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
