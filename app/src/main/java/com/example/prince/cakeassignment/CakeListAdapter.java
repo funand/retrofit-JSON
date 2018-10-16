@@ -1,6 +1,5 @@
 package com.example.prince.cakeassignment;
 
-import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -8,18 +7,17 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
 public class CakeListAdapter extends RecyclerView.Adapter<CakeListAdapter.CakeViewHolder> {
-    Context context;
-    List<Cake> dataset;
 
-    public CakeListAdapter(Context context, List<Cake> dataset) {
-        this.context = context;
+    List<Cake> dataset;
+    private View.OnClickListener listener;
+
+    public CakeListAdapter(List<Cake> dataset) {
         this.dataset = dataset;
     }
 
@@ -35,22 +33,32 @@ public class CakeListAdapter extends RecyclerView.Adapter<CakeListAdapter.CakeVi
     public void onBindViewHolder(@NonNull CakeListAdapter.CakeViewHolder holder, int position) {
         final Cake cake = dataset.get(position);
 
-        holder.layout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(context, cake.getTitle() + "!", Toast.LENGTH_SHORT).show();
-            }
-        });
         String imgURL = cake.getImage();
         Picasso.get().load(imgURL).fit().into((ImageView) holder.img.findViewById(R.id.cake_img));
         holder.title.setText(cake.getTitle());
         holder.description.setText(cake.getDesc());
     }
 
+    public void setOnClickListener(View.OnClickListener listener){
+        this.listener = listener;
+    }
+
+    public void onClick(View view) {
+        if(listener!=null){
+            listener.onClick(view);
+        }
+    }
+
+    void setWords(List<Cake> cakes){
+        dataset = cakes;
+        notifyDataSetChanged();
+    }
+
     @Override
     public int getItemCount() {
         return dataset.size();
     }
+
 
     class CakeViewHolder extends RecyclerView.ViewHolder{
         View layout;
