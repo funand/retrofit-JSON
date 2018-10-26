@@ -23,8 +23,7 @@ public class MainActivity extends AppCompatActivity {
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
         rv.setLayoutManager(layoutManager);
 
-        cakeViewModel = ViewModelProviders.of(this).get(CakeViewModel.class);//new CakeViewModel(this.getApplication());
-        if(cakeViewModel.getNewsResponseObservable().getValue() == null) System.out.println("well fuck");
+        cakeViewModel = ViewModelProviders.of(this).get(CakeViewModel.class);
         CakeListAdapter adapter = new CakeListAdapter(cakeViewModel.getNewsResponseObservable().getValue());
         rv.setAdapter(adapter);
         cakeViewModel.getNewsResponseObservable().observe(this, new Observer<List<Cake>>() {
